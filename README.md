@@ -1,4 +1,4 @@
-# Fastapi Enterprise Boilerplate (Architecture)
+# FastAPI Enterprise Boilerplate (Architecture)
 
 A scalable, modular, production-ready **FastAPI** backend architecture designed for a Enterprise-scale application. This architecture emphasizes maintainability, separation of concerns, extensibility, and high performance.
 

@@ -1,6 +1,6 @@
-# 🎬 Netflix Backend (FastAPI)
+# Fastapi Enterprise Boilerplate (Architecture)
 
-A scalable, modular, production-ready **FastAPI** backend architecture designed for a Netflix-scale application. This architecture emphasizes maintainability, separation of concerns, extensibility, and high performance.
+A scalable, modular, production-ready **FastAPI** backend architecture designed for a Enterprise-scale application. This architecture emphasizes maintainability, separation of concerns, extensibility, and high performance.
 
 ---
 

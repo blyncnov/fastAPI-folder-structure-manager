@@ -1,60 +1,78 @@
-# fastAPI-folder-structure-manager
+# 🎬 Netflix Backend (FastAPI)
 
+A scalable, modular, production-ready **FastAPI** backend architecture designed for a Netflix-scale application. This architecture emphasizes maintainability, separation of concerns, extensibility, and high performance.
+
+---
+
+## 🚀 Tech Stack
+
+- **FastAPI** – Modern, async web framework
+- **PostgreSQL** – Production-grade relational DB
+- **SQLAlchemy 2.x** – Async ORM
+- **Alembic** – Database migrations
+- **Pydantic v2** – Data validation and serialization
+- **Celery** + **Redis** – Background tasks and scheduling
+- **Docker** – Containerized deployment
+- **Pytest** – Testing framework
+
+---
+
+## 🗂️ Folder Structure
+
+```bash
 app/
-├── api/                      # FastAPI routes grouped by modules
-│   ├── v1/
-│   │   ├── users.py
-│   │   ├── auth.py
-│   │   └── __init__.py
+├── api/                      # FastAPI route declarations (modular, versioned)
+│   └── v1/
+│       ├── users.py          # /users endpoints
+│       ├── auth.py           # /auth endpoints
+│       └── __init__.py
+│
+├── core/                     # Application-wide core settings and utilities
+│   ├── config.py             # Environment config (Pydantic BaseSettings)
+│   ├── security.py           # Password hashing, JWT, OAuth2
+│   ├── celery_utils.py       # Celery configuration
 │   └── __init__.py
 │
-├── core/                     # Core configs and global utilities
-│   ├── config.py             # Pydantic settings
-│   ├── security.py           # Password hashing, JWT, etc.
-│   ├── celery_utils.py       # Optional Celery config
-│   └── __init__.py
+├── db/                       # Database management and model base
+│   ├── session.py            # DB session and engine
+│   ├── base.py               # Declarative base class
+│   └── models/               # All SQLAlchemy models
+│       ├── user.py
+│       └── __init__.py
 │
-├── db/                       # Database connection and models
-│   ├── base.py               # Base for models
-│   ├── session.py            # AsyncSession or DB engine
-│   ├── models/               # SQLAlchemy models
-│   │   ├── user.py
-│   │   └── __init__.py
-│   └── __init__.py
-│
-├── crud/                     # Database queries (like repositories)
+├── crud/                     # Data access layer: raw DB operations (repositories)
 │   ├── user.py
 │   └── __init__.py
 │
-├── schemas/                  # Pydantic models (request/response)
+├── schemas/                  # Pydantic request/response models
 │   ├── user.py
 │   ├── auth.py
 │   └── __init__.py
 │
-├── services/                 # Business logic layer
+├── services/                 # Business logic layer (service classes/functions)
 │   ├── auth_service.py
 │   └── user_service.py
 │
-├── tasks/                    # Background tasks / Celery jobs
-│   ├── send_email.py
-│   └── __init__.py
-│
-├── deps/                     # Common dependencies (e.g., get_current_user)
+├── deps/                     # FastAPI dependencies (e.g. auth, DB access)
 │   ├── auth.py
 │   └── __init__.py
 │
-├── main.py                   # FastAPI app instance
-├── initial_data.py           # Script to initialize DB
-└── __init__.py
+├── tasks/                    # Background workers (Celery or asyncio)
+│   ├── send_email.py
+│   └── __init__.py
+│
+├── main.py                   # FastAPI application startup
+├── initial_data.py           # Seed script to bootstrap DB with users, roles
+└── __init__.py               # Makes app importable as a package
 
 tests/
-├── api/
-├── services/
-├── conftest.py
+├── api/                      # API endpoint tests
+├── services/                 # Unit tests for business logic
+├── conftest.py               # Fixtures and shared test setup
 └── __init__.py
 
-.env                         # Environment variables
-requirements.txt
-alembic.ini                  # Alembic config
-migrations/                  # Alembic migrations
+.env                          # Environment variables
+alembic.ini                   # Alembic DB migration config
+migrations/                   # Auto-generated migration files
+requirements.txt              # Python dependencies
 README.md
